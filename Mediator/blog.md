@@ -29,20 +29,24 @@
 > [5.相关参考](#5)  
 
 
-# 1.面临的问题与背景<span id="#1"> </span>
+<span id="#1"> </span>
+# 1.面临的问题与背景
 ---
-## 1.1 如果没有跳转中心时, 工程内组件件是如何调用的?<span id="#1.1"> </span>
+<span id="#1.1"> </span>
+## 1.1 如果没有跳转中心时, 工程内组件件是如何调用的?
 在项目中, 总是会有各个模块之间的相互调用与耦合. 一般情况是这样的:
 ![没跳转中心时的场景](https://raw.githubusercontent.com/ChenTF/Blog/master/Mediator/Resource/1_1.jpg)
 
-## 1.2 加入跳转中心后<span id="#1.2"> </span>
+<span id="#1.2"> </span>
+## 1.2 加入跳转中心后
 各个模块之间通过Mediator／Route来实现相互调用。
 ![加入跳转中心后的场景](https://raw.githubusercontent.com/ChenTF/Blog/master/Mediator/Resource/1_2.jpg)
 
 **疑问:**  
 好像并没有什么区别？只是将耦合放到了Mediator层, 
 
-#1.3 跳转中心愿景<span id="#1.3"></span>
+<span id="#1.3"></span>
+#1.3 跳转中心愿景
 *一个模块只与Mediator耦合，不与外部模块耦合*
 
 **3个问题：**
