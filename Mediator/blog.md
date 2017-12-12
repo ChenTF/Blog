@@ -29,20 +29,20 @@
 > [5.相关参考](#5)  
 
 
-# 1.面临的问题与背景
+# 1.面临的问题与背景<span id="#1"></span>
 ---
-## 1.1 如果没有跳转中心时, 工程内组件件是如何调用的?
+## 1.1 如果没有跳转中心时, 工程内组件件是如何调用的?<span id="#1.1"></span>
 在项目中, 总是会有各个模块之间的相互调用与耦合. 一般情况是这样的:
 ![没跳转中心时的场景](https://raw.githubusercontent.com/ChenTF/Blog/master/Mediator/Resource/1_1.jpg)
 
-## 1.2 加入跳转中心后
+## 1.2 加入跳转中心后<span id="#1.2"></span>
 各个模块之间通过Mediator／Route来实现相互调用。
 ![加入跳转中心后的场景](https://raw.githubusercontent.com/ChenTF/Blog/master/Mediator/Resource/1_2.jpg)
 
 **疑问:**  
 好像并没有什么区别？只是将耦合放到了Mediator层, 
 
-#1.3 跳转中心愿景
+#1.3 跳转中心愿景<span id="#1.3"></span>
 *一个模块只与Mediator耦合，不与外部模块耦合*
 
 **3个问题：**
@@ -51,9 +51,9 @@
 * 如何实现跨组件调用？  
 * 如何破除Mediator与模块间的耦合？  
 
-# 2、业内方案对比
+# 2、业内方案对比<span id="#2"></span>
 ---
-## 2.1 URL -> Block
+## 2.1 URL -> Block<span id="#2.1"></span>
 **代码推演:**  
 *核心思想:* 将URL与Block一一绑定. 在使用的时候只使用URL, 就可以调用到对应的Block.
 
@@ -139,7 +139,7 @@ URL方式就不能传非常规数据类型, 比如UIImage, NSData, 自定义类.
 <img src="https://raw.githubusercontent.com/ChenTF/Blog/master/Mediator/Resource/2_2.jpg"  alt="远程调用与本地调用关系图"  height=180px width=300px />
 
 
-## 2.2 Target-Action
+## 2.2 Target-Action<span id="#2.2"></span>
 
 ### 2.2.1 直接使用RunTime的场景
 
@@ -255,7 +255,7 @@ NSString * const kCTMediatorAction_AVC = @"AVC";
 *如何实现远程调用?*  
 本组件的重点是先实现本地调用, 远程调用是将对应的URL进行解析后, 进行的转换, 分发实现的.
 
-## 2.3 LJRoute
+## 2.3 LJRoute<span id="#2.3"></span>
 **核心思想:**  
    使用宏方法来重写系统方法, 在宏方法内注册组件, 将对应的类名, 方法名保存到跳转中心中.  在使用时通过RunTime+对应的名称来实现实例化与调用.
 
@@ -272,8 +272,8 @@ NSString * const kCTMediatorAction_AVC = @"AVC";
 
 * 采用无侵入的方式来实现
 
-# 3.Target-Action在当前业务中应用效果
-## 3.1 本地跳转
+# 3.Target-Action在当前业务中应用效果<span id="#3"></span>
+## 3.1 本地跳转<span id="#3.1"></span>
 ```
 // CTmediator+Login.h
 @interface CTMediator (Login)
@@ -294,7 +294,7 @@ NSString * const kCTMediatorAction_AVC = @"AVC";
 - (UIViewController *)CTMediator_beforeHandSettleVCWithOrderID:(NSString *)orderID;
 ```
 
-##3.2 远程跳转
+##3.2 远程跳转<span id="#3.2"></span>
 ```
 // CTmediator+SYDispatch.h
 @interface CTMediator (SYDispatch)
@@ -310,8 +310,8 @@ NSString * const kCTMediatorAction_AVC = @"AVC";
 @end
 ```
 
-# 4.未来的愿景
-## 4.1 横向切分与纵向切分关系
+# 4.未来的愿景<span id="#4"></span>
+## 4.1 横向切分与纵向切分关系<span id="#4.1"></span>
 
 横向拆分业务、功能模块:
 ![横向拆分](https://raw.githubusercontent.com/ChenTF/Blog/master/Mediator/Resource/4_1.jpg)
@@ -320,7 +320,7 @@ NSString * const kCTMediatorAction_AVC = @"AVC";
 ![纵向拆分](https://raw.githubusercontent.com/ChenTF/Blog/master/Mediator/Resource/4_2.jpg)
 
 
-# 5 相关参考:
+# 5 相关参考:<span id="#5"></span>
 [CTMediator](https://casatwy.com/iOS-Modulization.html)  
 [蘑菇街 App 的组件化之路](http://limboy.me/tech/2016/03/10/mgj-components.html)  
 [iOS组件化方案探索](http://blog.cnbang.net/tech/3080/)  
