@@ -14,8 +14,8 @@
 > 
 > > [2.1 URL -> Block](#2.1)  
 > > [2.2 Target-Action](#2.2)  
-> > [2.2.1 直接使用RunTime的场景](#2.2.1)  
-> > [2.2.2 优化后](#2.2.2)  
+> > [2.2.1 直接使用RunTime的场景](#2.2)  
+> > [2.2.2 优化后](#2.2)  
 > > [2.3 LJRoute](#2.3)  
 > 
 > [3.Target-Action在当前业务中应用效果](#3)  
@@ -31,7 +31,6 @@
 
 <span id="#1"> </span>
 # 1.面临的问题与背景
----
 <span id="#1.1"> </span>
 ## 1.1 如果没有跳转中心时, 工程内组件件是如何调用的?
 在项目中, 总是会有各个模块之间的相互调用与耦合. 一般情况是这样的:
@@ -55,9 +54,11 @@
 * 如何实现跨组件调用？  
 * 如何破除Mediator与模块间的耦合？  
 
-# 2、业内方案对比<span id="#2"></span>
----
-## 2.1 URL -> Block<span id="#2.1"></span>
+
+<span id="#2"></span>
+# 2、业内方案对比
+<span id="#2.1"></span>
+## 2.1 URL -> Block
 **代码推演:**  
 *核心思想:* 将URL与Block一一绑定. 在使用的时候只使用URL, 就可以调用到对应的Block.
 
@@ -143,7 +144,8 @@ URL方式就不能传非常规数据类型, 比如UIImage, NSData, 自定义类.
 <img src="https://raw.githubusercontent.com/ChenTF/Blog/master/Mediator/Resource/2_2.jpg"  alt="远程调用与本地调用关系图"  height=180px width=300px />
 
 
-## 2.2 Target-Action<span id="#2.2"></span>
+<span id="#2.2"></span>
+## 2.2 Target-Action
 
 ### 2.2.1 直接使用RunTime的场景
 
@@ -276,7 +278,8 @@ NSString * const kCTMediatorAction_AVC = @"AVC";
 
 * 采用无侵入的方式来实现
 
-# 3.Target-Action在当前业务中应用效果<span id="#3"></span>
+<span id="#3"></span>
+# 3.Target-Action在当前业务中应用效果
 ## 3.1 本地跳转<span id="#3.1"></span>
 ```
 // CTmediator+Login.h
@@ -298,7 +301,8 @@ NSString * const kCTMediatorAction_AVC = @"AVC";
 - (UIViewController *)CTMediator_beforeHandSettleVCWithOrderID:(NSString *)orderID;
 ```
 
-##3.2 远程跳转<span id="#3.2"></span>
+<span id="#3.2"></span>
+##3.2 远程跳转
 ```
 // CTmediator+SYDispatch.h
 @interface CTMediator (SYDispatch)
@@ -314,8 +318,10 @@ NSString * const kCTMediatorAction_AVC = @"AVC";
 @end
 ```
 
-# 4.未来的愿景<span id="#4"></span>
-## 4.1 横向切分与纵向切分关系<span id="#4.1"></span>
+<span id="#4"></span>
+# 4.未来的愿景
+<span id="#4.1"></span>
+## 4.1 横向切分与纵向切分关系
 
 横向拆分业务、功能模块:
 ![横向拆分](https://raw.githubusercontent.com/ChenTF/Blog/master/Mediator/Resource/4_1.jpg)
@@ -324,7 +330,8 @@ NSString * const kCTMediatorAction_AVC = @"AVC";
 ![纵向拆分](https://raw.githubusercontent.com/ChenTF/Blog/master/Mediator/Resource/4_2.jpg)
 
 
-# 5 相关参考:<span id="#5"></span>
+<span id="#5"></span>
+# 5 相关参考:
 [CTMediator](https://casatwy.com/iOS-Modulization.html)  
 [蘑菇街 App 的组件化之路](http://limboy.me/tech/2016/03/10/mgj-components.html)  
 [iOS组件化方案探索](http://blog.cnbang.net/tech/3080/)  
