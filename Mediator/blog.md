@@ -1,4 +1,4 @@
-# iOS跳转中心设计与实践
+# iOS跳转中心探索之路  
 
 
 # 目录:
@@ -43,7 +43,7 @@
 **疑问:**  
 好像并没有什么区别？只是将耦合放到了Mediator层, 
 
-#1.3 跳转中心愿景
+# 1.3 跳转中心愿景
 *一个模块只与Mediator耦合，不与外部模块耦合*
 
 **3个问题：**
@@ -295,7 +295,7 @@ NSString * const kCTMediatorAction_AVC = @"AVC";
 - (UIViewController *)CTMediator_beforeHandSettleVCWithOrderID:(NSString *)orderID;
 ```
 
-##3.2 远程跳转
+## 3.2 远程跳转
 ```
 // CTmediator+SYDispatch.h
 @interface CTMediator (SYDispatch)
