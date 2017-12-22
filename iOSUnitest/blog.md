@@ -141,22 +141,24 @@ exception_name为一个指定名字
 
 # 2 需要注意的小细节
 ## 2.1 workspace — project — targets 讲解
+![wpt关系图](https://raw.githubusercontent.com/ChenTF/Blog/master/iOSUnitest/Resource/2_1.png)
 一个工作空间可以包含多个项目，一个项目可以包含多个目标（生成物）。    
 一个项目中根据运行的targets不同，可以进行不同的编译设置，project是基础父类，targets是子类，targets的设置会覆盖project的设置。
 
 
-**与单元测试的关系: **
+**与单元测试的关系:**
 
 单元测试是在一个新的target上进行的设置，这样就不会影响程序开发，编译。    
-在XCode7中创建一个项目时默认是选中创建测试target的，如果没有，创建方法如下：File -> New -> target -> UITest/UnitTest，创建完成后会自动创建对应的文件夹。
+在XCode7中创建一个项目时默认是选中创建测试target的，如果没有，创建方法如下：`File -> New -> target -> UITest/UnitTest`，创建完成后会自动创建对应的文件夹。
 
 ## 2.2.Target Membership
-参考：http://www.cnblogs.com/graphics/p/4117353.html
+
+![Target Membership设置](https://raw.githubusercontent.com/ChenTF/Blog/master/iOSUnitest/Resource/2_2.png)
 
 Target membership是指XCode中，一个文件属于哪一个工程，在XCode左侧的工程面板中选中一个文件，在XCode右侧的属性面板中会显示其Target Membership，如下图。
 当前的文件AppDelegate.m属于书谱这个Target。
 
-Target Membership的一些属性。
+**Target Membership的一些属性:**
 
 * .h  文件没有Target Membership, 只有.m有
 * 文件夹引用有Target Membership，其子文件继承该文件夹的Target Membership。但面板中不显示子文件的Target Membership。
@@ -165,7 +167,7 @@ Target Membership的一些属性。
 
 ## 2.3 Link Binary With Libraries
 在测试本地存储是，如果需要一些二进制文件的支持，则test targert也需要引入相应的文件（配置和正常项目需一样）。
-
+![Target Membership设置](https://raw.githubusercontent.com/ChenTF/Blog/master/iOSUnitest/Resource/2_3.png)
 
 
 
