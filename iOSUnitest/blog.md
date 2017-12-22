@@ -141,7 +141,7 @@ exception_name为一个指定名字
 
 # 2 需要注意的小细节
 ## 2.1 workspace — project — targets 讲解
-![wpt关系图](https://raw.githubusercontent.com/ChenTF/Blog/master/iOSUnitest/Resource/3_1.png)
+![wpt关系图](https://raw.githubusercontent.com/ChenTF/Blog/master/iOSUnitest/Resource/2_1.png)
 一个工作空间可以包含多个项目，一个项目可以包含多个目标（生成物）。    
 一个项目中根据运行的targets不同，可以进行不同的编译设置，project是基础父类，targets是子类，targets的设置会覆盖project的设置。
 
@@ -153,7 +153,7 @@ exception_name为一个指定名字
 
 ## 2.2.Target Membership
 
-![Target Membership设置](https://raw.githubusercontent.com/ChenTF/Blog/master/iOSUnitest/Resource/3_2.png)
+![Target Membership设置](https://raw.githubusercontent.com/ChenTF/Blog/master/iOSUnitest/Resource/2_2.png)
 
 Target membership是指XCode中，一个文件属于哪一个工程，在XCode左侧的工程面板中选中一个文件，在XCode右侧的属性面板中会显示其Target Membership，如下图。
 当前的文件AppDelegate.m属于书谱这个Target。
@@ -167,14 +167,14 @@ Target membership是指XCode中，一个文件属于哪一个工程，在XCode�
 
 ## 2.3 Link Binary With Libraries
 在测试本地存储是，如果需要一些二进制文件的支持，则test targert也需要引入相应的文件（配置和正常项目需一样）。
-![Link Binary设置](https://raw.githubusercontent.com/ChenTF/Blog/master/iOSUnitest/Resource/3_3.png)
+![Link Binary设置](https://raw.githubusercontent.com/ChenTF/Blog/master/iOSUnitest/Resource/2_3.png)
 
-![Link Binary设置](https://raw.githubusercontent.com/ChenTF/Blog/master/iOSUnitest/Resource/3_4.png)
+![Link Binary设置](https://raw.githubusercontent.com/ChenTF/Blog/master/iOSUnitest/Resource/2_4.png)
 
 ## 2.4 设置本地的支持文件路径
 提醒：每次修改完配置文件，建议先Clean（Command+Shift+K）缓存，再编译。
 
-![Link Binary设置](https://raw.githubusercontent.com/ChenTF/Blog/master/iOSUnitest/Resource/3_5.png)
+![Link Binary设置](https://raw.githubusercontent.com/ChenTF/Blog/master/iOSUnitest/Resource/2_5.png)
 
 ## 2.5 PCH
      pch 和main target设置成一直, 注意Precompile Prefix Header选项
