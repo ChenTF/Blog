@@ -142,6 +142,7 @@ exception_name为一个指定名字
 # 2 需要注意的小细节
 ## 2.1 workspace — project — targets 讲解
 ![wpt关系图](https://raw.githubusercontent.com/ChenTF/Blog/master/iOSUnitest/Resource/2_1.png)
+
 一个工作空间可以包含多个项目，一个项目可以包含多个目标（生成物）。    
 一个项目中根据运行的targets不同，可以进行不同的编译设置，project是基础父类，targets是子类，targets的设置会覆盖project的设置。
 
@@ -166,7 +167,8 @@ Target membership是指XCode中，一个文件属于哪一个工程，在XCode�
 以前遇到一个错误，就是UIImage创建的时候返回nil，仔细查看发现，图片的Target Membership选项没有勾上。这个错误比较难以发现，特此记之。
 
 ## 2.3 Link Binary With Libraries
-在测试本地存储是，如果需要一些二进制文件的支持，则test targert也需要引入相应的文件（配置和正常项目需一样）。
+在测试本地存储时，如果需要一些二进制文件的支持，则test targert也需要引入相应的文件（配置和正常项目需一样）。
+
 ![Link Binary设置](https://raw.githubusercontent.com/ChenTF/Blog/master/iOSUnitest/Resource/2_3.png)
 
 ![Link Binary设置](https://raw.githubusercontent.com/ChenTF/Blog/master/iOSUnitest/Resource/2_4.png)
@@ -177,24 +179,24 @@ Target membership是指XCode中，一个文件属于哪一个工程，在XCode�
 ![Link Binary设置](https://raw.githubusercontent.com/ChenTF/Blog/master/iOSUnitest/Resource/2_5.png)
 
 ## 2.5 PCH
-     pch 和main target设置成一直, 注意Precompile Prefix Header选项
+和main target设置成一直, 注意Precompile Prefix Header选项
+
+![PCH设置](https://raw.githubusercontent.com/ChenTF/Blog/master/iOSUnitest/Resource/2_6.png)
 
 
-## 2.6 Pods设置
-     当项目中有pod时, 在测试文件中引用pods的文件, 提示找不到, 错误如下:
+## 2.6 Pods引用找不到
+当项目中有pod时, 在测试文件中引用pods的文件, 提示找不到, 错误如下:
 
+![Pods设置](https://raw.githubusercontent.com/ChenTF/Blog/master/iOSUnitest/Resource/2_7.png)
      
-     解决方案: 设置PROJECT的Configurations
+解决方案: 设置PROJECT的Configurations
+
+![Pods设置](https://raw.githubusercontent.com/ChenTF/Blog/master/iOSUnitest/Resource/2_8.png)
 
 
 ## 2.7 plist设置
-     两种方案
-     一: 设置plist文件与build一致
-     
-     二: 将info.plist路径改成build target的路径
-
-
-代码
+设置成与源target一致:
+![Pods设置](https://raw.githubusercontent.com/ChenTF/Blog/master/iOSUnitest/Resource/2_9.png)
 
 
 # 3 实战技巧
@@ -277,4 +279,40 @@ Target membership是指XCode中，一个文件属于哪一个工程，在XCode�
 
 ## 3.3 如何测试网络请求
 使用OCMock来实现
+
+# 4 心法
+在项目中添加单元测试很迷茫, 以什么准则来给项目添加测试, 来什么方法来写测试? 
+最后我在这篇[objccn](http://objccn.io/issue-15-1/) 中找到了答案: "你不应该关注于测试，而是应该关注行为。"
+
+那么如何测行为? 我的理解是:"输入+结果 之间的就是行为",  以最少的接口暴露来模拟用户的实际操作行为, 直接给出输入与预期结果, 宏观的调用某个"功能点"。
+
+# 4.1 Given / When / Then
+
+我们可以根据 Given-When-Then 模式来组织我们的测试用例，将测试用例拆分成三个部分。
+
+在 given 部分里，通过创建模型对象或将被测试的系统设置到指定的状态，来设定测试环境。when 这部分包含了我们要测试的代码。在大部分情况，这里只有一个方法调用。在 then 这部分中 ，我们需要检查我们行为的结果：是否得到了我们期望的结果？对象是否有改变？这部分主要包括一些断言。
+
+一个简单的测试用例看起来是这个样子的：
+```
+- (void)testThatItDoesURLEncoding
+{
+    // given
+    NSString *searchQuery = @"$&?@";
+    HTTPRequest *request = [HTTPRequest requestWithURL:@"/search?q=%@", searchQuery];
+
+    // when
+    NSString *encodedURL = request.URL;
+
+    // then
+    XCTAssertEqualObjects(encodedURL, @"/search?q=%24%26%3F%40");
+}
+```
+这种简单的模式使我们能够更容易地书写和理解这些测试用例，因为它们都遵循了同样的模式。为了更快地浏览，我们甚至会在每个部分的代码上写上 “given”，“when”，“then” 的注释。通过这种方式，这个方法就能很快被理解。
+
+参考:    
+[iOS 单元测试](http://my.oschina.net/ChenTF/blog/677309)    
+[Target membership](http://www.cnblogs.com/graphics/p/4117353.html)    
+[单元测试断言汇总](http://my.oschina.net/u/1418722/blog/340194?fromerr=RUMiSWBO)     
+[objccn XCTest](https://github.com/objccn/articles/blob/master/publish/issue15/issue-15-2-morisunshine.md)    
+
 
