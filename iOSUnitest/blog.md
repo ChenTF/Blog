@@ -1,3 +1,32 @@
+> 目录:    
+> 1 XCTest使用示例    
+> 
+> >    1.1 测试目标代码    
+> >   1.2 创建对应测试类    
+> >   1.3 编写测试方法    
+> >   1.4 测试结果    
+> >   1.5 XCTAssert宏方法    
+> 
+> 2 需要注意的小细节   
+> 
+> >   2.1 workspace — project — targets 讲解     
+> >   2.2.Target Membership    
+> >   2.3 Link Binary With Libraries    
+> >   2.4 设置本地的支持文件路径   
+> >   2.5 PCH   
+> >   2.6 Pods引用找不到   
+> >   2.7 plist设置   
+>
+>    3 实战技巧   
+> >   3.1 如何测私有方法?   
+> >   3.2 如何获取VC中的某个View   
+> >   3.3 如何测试网络请求??   
+> >   3.4 如何测试异步回调??
+>
+> 4 心法
+> 
+> >   4.1 Given / When / Then
+> > 
 
 # 1 XCTest使用示例
 XCTest是苹果官方提供的测试类, 只需要引入`#import <XCTest/XCTest.h>` 就可以使用.
@@ -32,9 +61,11 @@ XCTest是苹果官方提供的测试类, 只需要引入`#import <XCTest/XCTest.
 
 ## 1.4 测试结果
 **Log打印:**
+
 ![测试结果打印](https://raw.githubusercontent.com/ChenTF/Blog/master/iOSUnitest/Resource/1_4.png)
 
 **测试列表:**
+
 ![测试结果列表](https://raw.githubusercontent.com/ChenTF/Blog/master/iOSUnitest/Resource/1_5.png)
 
 **说明:**
